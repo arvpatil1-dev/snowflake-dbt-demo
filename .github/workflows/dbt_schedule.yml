@@ -2,7 +2,7 @@ name: dbt Run Daily
 
 on:
   schedule:
-    - cron: '0 3 * * *'  # रोज सकाळी 8:30 IST
+    - cron: '0 3 *'  # Runs at 02:00 UTC = 8:30 IST
   workflow_dispatch:
 
 jobs:
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.10'
@@ -21,10 +21,10 @@ jobs:
       - name: Create profiles.yml
         run: |
           mkdir -p ~/.dbt
-          echo "snowflake-dbt-demo:
-            target: prod
+          echo "default:
+            target: dev
             outputs:
-              prod:
+              dev:
                 type: snowflake
                 account: ${{ secrets.DBT_ACCOUNT }}
                 user: ${{ secrets.DBT_USER }}
@@ -33,11 +33,11 @@ jobs:
                 warehouse: COMPUTE_WH
                 schema: PUBLIC
                 role: SYSADMIN
-                threads: 2
+                threads: 4
           " > ~/.dbt/profiles.yml
 
       - name: Run dbt
         run: |
           dbt deps
-          dbt run
-          dbt test
+          dbt run --target dev
+          dbt test --target dev
