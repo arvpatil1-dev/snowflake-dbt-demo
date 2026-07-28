@@ -1,36 +1,3 @@
-<<<<<<< HEAD
-# Name your project! Project names should contain only lowercase characters
-# and underscores. A good package name should reflect your organization's
-# name or the intended use of these models
-name: 'snowflake-dbt-demo'
-version: '1.0.0'
-config-version: 2
-
-# This setting configures which "profile" dbt uses for this project.
-profile: 'default'
-
-# These configurations specify where dbt should look for different types of files.
-model-paths: ["models"]
-analysis-paths: ["analysis"]
-test-paths: ["tests"]
-seed-paths: ["seeds"]
-macro-paths: ["macros"]
-snapshot-paths: ["snapshots"]
-
-target-path: "target"  # directory which will store compiled SQL files
-clean-targets:         # directories to be removed by `dbt clean`
-    - "target"
-    - "dbt_packages"
-
-
-# Configuring models
-models:
-  snowflake-dbt-demo:
-    staging:
-      +materialized: table
-    marts:
-      +materialized: table
-=======
 
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
@@ -40,7 +7,7 @@ version: '1.0.0'
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
-profile: 'default' 
+profile: 'default'
 
 # These configurations specify where dbt should look for different types of files.
 # The `model-paths` config, for example, states that models in this project can be
@@ -73,4 +40,3 @@ models:
     # Applies to all files under models/example/
     example:
       +materialized: table
->>>>>>> 0dab29da634c977f2981111faa69111c9e23431a
