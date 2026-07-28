@@ -3,7 +3,7 @@
 select
     ORDER_ID,
     CUSTOMER_ID,
-    CATEGORY,
+    PAYMENT_METHOD,
     ORDER_STATUS
 from {{ source('raw', 'ORDERS') }}
 
